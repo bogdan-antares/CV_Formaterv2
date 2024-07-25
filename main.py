@@ -33,7 +33,7 @@ class CVFormaterApp(App):
 
     def load_api_key(self):
         if os.path.exists('config.json'):
-            with open('config.json', 'r') as f:
+            with open('config.json', 'r', encoding='utf-8') as f:
                 config = json.load(f)
                 api_key = config.get('MISTRAL_API_KEY', '')
                 self.api_key_input.text = api_key
@@ -46,7 +46,7 @@ class CVFormaterApp(App):
             return
 
         config = {'MISTRAL_API_KEY': api_key}
-        with open('config.json', 'w') as f:
+        with open('config.json', 'w', encoding='utf-8') as f:
             json.dump(config, f)
 
         os.environ['MISTRAL_API_KEY'] = api_key
@@ -107,7 +107,7 @@ class CVFormaterApp(App):
             self.cv_text_input.text = ''
             # Construire le chemin complet du fichier
             save_path = os.path.join(self.selected_path, f"{filename}.docx")
-            # Exécuter le script web.py
+            # Exécuter le script request.py
             self.run_web_script(save_path)
             self.filename_popup.dismiss()
         except Exception as e:
@@ -127,4 +127,3 @@ class CVFormaterApp(App):
 
 if __name__ == "__main__":
     CVFormaterApp().run()
-

@@ -123,7 +123,7 @@ def main(cv_test_file, save_path):
         sorted_info = send_to_mistral(prompt)
         if sorted_info is not None:
             lines = sorted_info.split('\n')
-            cleaned_info = '\n.join(line for line in lines if "```" not in line)
+            cleaned_info = '\n'.join(line for line in lines if "```" not in line)
             final_text += cleaned_info + '\n'
         else:
             print("Erreur lors de la récupération des données auprès de Mistral.")

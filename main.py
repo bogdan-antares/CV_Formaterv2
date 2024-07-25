@@ -101,7 +101,7 @@ class CVFormaterApp(App):
 
         # Sauvegarder le texte du CV dans un fichier
         try:
-            with open('cv_text.txt', 'w') as f:
+            with open('cv_text.txt', 'w', encoding='utf-8') as f:
                 f.write(cv_text)
             # Réinitialiser la zone de texte après sauvegarde
             self.cv_text_input.text = ''

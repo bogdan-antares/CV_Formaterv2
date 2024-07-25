@@ -123,13 +123,13 @@ def main(cv_test_file, save_path):
         sorted_info = send_to_mistral(prompt)
         if sorted_info is not None:
             lines = sorted_info.split('\n')
-            cleaned_info = '\n'.join(line for line in lines if "```" not in line)
+            cleaned_info = '\n.join(line for line in lines if "```" not in line)
             final_text += cleaned_info + '\n'
         else:
             print("Erreur lors de la récupération des données auprès de Mistral.")
 
     if final_text:
-        with open('data.py', 'w') as f:
+        with open('data.py', 'w', encoding='utf-8') as f:
             f.write(final_text)
     else:
         print("Aucune donnée à écrire dans data.py.")
@@ -152,4 +152,5 @@ if __name__ == "__main__":
     save_path = sys.argv[2]
 
     main(cv_text_file, save_path)
+
 

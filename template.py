@@ -260,7 +260,7 @@ def main(save_path):
     title_run = title_paragraph.add_run('        FORMATIONS')
     title_run.font.name = 'Calibri'
     title_run.font.size = Pt(14)
-    title_run.font.bold = True
+    title_run.bold = True
     title_run.font.color.rgb = RGBColor(0xff, 0xff, 0xff)
     title_paragraph.alignment = 0
     title_paragraph.paragraph_format.left_indent = -Cm(0.7)
@@ -281,4 +281,3 @@ if __name__ == "__main__":
         main(save_path)
     else:
         print("Please provide a save path for the document.")
-

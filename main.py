@@ -10,6 +10,8 @@ import subprocess
 import os
 import json
 import sys
+import win32api
+import win32con
 
 class CVFormaterApp(App):
     def build(self):
@@ -54,7 +56,7 @@ class CVFormaterApp(App):
         popup.open()
 
     def open_file_chooser(self, instance):
-        self.file_chooser = FileChooserIconView()
+        self.file_chooser = FileChooserIconView(filters=[self.is_hidden_or_system])
         self.save_button = Button(text='Sélectionner le répertoire', size_hint=(1, 0.1))
         self.save_button.bind(on_press=self.open_filename_dialog)
 
@@ -64,6 +66,15 @@ class CVFormaterApp(App):
 
         self.popup = Popup(title='Choisir le répertoire de sauvegarde', content=layout, size_hint=(0.9, 0.9))
         self.popup.open()
+
+    def is_hidden_or_system(self, filename, filetype):
+        try:
+            attributes = win32api.GetFileAttributes(filename)
+            if attributes & (win32con.FILE_ATTRIBUTE_HIDDEN | win32con.FILE_ATTRIBUTE_SYSTEM):
+                return False
+            return True
+        except Exception:
+            return False
 
     def open_filename_dialog(self, instance):
         self.selected_path = self.file_chooser.path

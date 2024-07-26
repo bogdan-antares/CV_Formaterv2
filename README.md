@@ -41,7 +41,6 @@ Entrer les commandes suivantes d'un coup, telle que présentés ci-dessous :
 
 winget install Python.Python3 -y
 pip install numpy
-choco install git -y
 pip install kivy
 pip install python-docx
 pip install python-dateutil
